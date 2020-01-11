@@ -1,0 +1,11 @@
+<h1>HERE YOU WILL EDIT YOUR PROFILE</h1>
+ <div class="body">
+   <form class="name" action="index.html" method="post">
+     email: <%= current_user.email%> <br>
+     phone number: <br>
+     <input type="tel" name="" value=""><br>
+     <input type="submit" name="" value="Submit" class="button">
+   </form>
+ </div>
+<%= button_to "back", :back, method: :get %>
+<%= button_to "home", user_path(current_user.id), method: :get %>

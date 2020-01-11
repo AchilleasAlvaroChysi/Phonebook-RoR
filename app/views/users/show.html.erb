@@ -1,0 +1,8 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<% if logged_in? %>
+  <h1> hello, i'm <%= current_user.email%> </h1>
+<% end %>
+<%= button_to "logout", '/welcome', method: :get %>
+<%= button_to "users", '/users', method: :get%>
+<%= button_to "profile", edit_user_path(current_user.id), method: :get %>
