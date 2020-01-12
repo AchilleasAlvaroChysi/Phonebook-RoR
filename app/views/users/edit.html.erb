@@ -1,11 +1,23 @@
-<h1>HERE YOU WILL EDIT YOUR PROFILE</h1>
- <div class="body">
-   <form class="name" action="index.html" method="post">
-     email: <%= current_user.email%> <br>
-     phone number: <br>
-     <input type="tel" name="" value=""><br>
-     <input type="submit" name="" value="Submit" class="button">
-   </form>
- </div>
-<%= button_to "back", :back, method: :get %>
+<div class="title">
+    email: <b> <%= current_user.email%> <b>
+  </div>
+<div class="body">
+  <% list = current_user.details%>
+  <% if list.any? %>
+    <% list.each do |f|%>
+      <div class= "items">
+        Phone: <%= f.phone%>
+        <br>
+        Address: <%= f.address%>
+        <br>
+        <%= button_to 'delete', detail_path(f.id) , method: :delete%>
+      </div>
+      <br>
+      <br>
+    <%end%>
+      
+  <% end %>    
+  <br>
+  <br>
+</div>
 <%= button_to "home", user_path(current_user.id), method: :get %>

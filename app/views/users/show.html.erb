@@ -1,8 +1,24 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<% if logged_in? %>
-  <h1> hello, i'm <%= current_user.email%> </h1>
-<% end %>
-<%= button_to "logout", '/welcome', method: :get %>
-<%= button_to "users", '/users', method: :get%>
-<%= button_to "profile", edit_user_path(current_user.id), method: :get %>
+<main>
+  <% if logged_in? %>
+    <h1> hello <%= current_user.email.split('@').first%> </h1>
+    <div class= row>
+      <div class = col-md-6>
+        <% list = current_user.details %>
+        <% if list.any? %>
+          <% list.each do |d| %>
+            <div class="info">
+              <p> Phone: <%= d.phone %> </p>
+              <p>Address: <%= d.address %> </p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</main>
+<section>
+  <%= button_to "add details", new_user_detail_path(current_user), method: :get %>
+  <%= button_to "logout", '/welcome', method: :get %>
+  <%= button_to "users", '/users', method: :get%>
+  <%= button_to "profile", edit_user_path(current_user.id), method: :get %>
+</section>

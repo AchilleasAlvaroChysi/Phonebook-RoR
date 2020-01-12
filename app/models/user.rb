@@ -1,5 +1,20 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string
+#  password_digest :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
 	has_secure_password
-	validates :password, presence: true
+	validates :email, presence: true, uniqueness: true
+
 	validates_confirmation_of :password
+	has_many :details
+	accepts_nested_attributes_for :details
+
 end

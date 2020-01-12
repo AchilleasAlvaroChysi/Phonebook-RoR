@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+body{
+  align-content: center;
+  align-items: center;
+}
+.title {
+  text-align: center;
+}
+
+.signup {
+  margin-left: 2%;
+  margin-top: 1%
+}
+
+.login {
+  margin-left: 2%;
+  margin-top: 1%
+}
+p{
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
+}
+
+h1{
+  text-align: center;
+}
+
+.items{
+  color: crimson;
+  background-color: black;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+

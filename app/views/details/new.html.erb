@@ -1,0 +1,11 @@
+<h1> <%= current_user.email %> please add your info </h1>
+
+<%= form_for Detail.new(), :url => user_details_path, :html => {:multipart => true} do |f| %>
+  <%= f.label :phone  %>
+  <%= f.telephone_field :phone %>
+  <br>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.submit %>
+<% end %>
+<%= button_to "back", user_path(current_user), method: :get %>
