@@ -1,23 +1,17 @@
-<main>
-  <% if logged_in? %>
-    <div class= 'title'><h1> hello <%= current_user.email.split('@').first%> </h1></div>
-      <body>
-        <% list = current_user.details %>
-        <% if list.any? %>
-          <% list.each do |d| %>
-              <div class= 'owner'>Owner: <%= User.find(d.user_id).email%></div>
-              <div class= 'details'>
-                <p>Phone: <%= d.phone %> </p>
-                <p>Address: <%= d.address %> </p>
-              </div>
-          <% end %>
-        <% end %>
-      </body>
-  <% end %>
-</main>
-<section>
-  <%= button_to "add details", new_user_detail_path(current_user), method: :get %>
-  <%= button_to "logout", '/welcome', method: :get %>
-  <%= button_to "users", '/users', method: :get%>
-  <%= button_to "profile", edit_user_path(current_user.id), method: :get %>
-</section>
+<div class= "button">
+  <%= button_to "add details", new_user_detail_path(current_user), method: :get, class: "btn" %>
+  <%= button_to "logout", '/welcome', method: :get, class: "btn btn-logout" %>
+  <%= button_to "users", '/users', method: :get, class: "btn"%>
+  <%= button_to "profile", edit_user_path(current_user.id), method: :get , class: "btn"%>
+</div>
+<% if logged_in? %>
+  <h1> hello <%= current_user.email.split('@').first%> </h1>
+    <% list = current_user.details %>
+    <% if list.any? %>
+      <% list.each do |d| %>
+          Owner: <%= User.find(d.user_id).email%>
+          <p>Phone: <%= d.phone %> </p>
+          <p>Address: <%= d.address %> </p>
+      <% end %>
+    <% end %>
+<% end %>
