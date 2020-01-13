@@ -1,19 +1,18 @@
 <main>
   <% if logged_in? %>
-    <h1> hello <%= current_user.email.split('@').first%> </h1>
-    <div class= row>
-      <div class = col-md-6>
+    <div class= 'title'><h1> hello <%= current_user.email.split('@').first%> </h1></div>
+      <body>
         <% list = current_user.details %>
         <% if list.any? %>
           <% list.each do |d| %>
-            <div class="info">
-              <p> Phone: <%= d.phone %> </p>
-              <p>Address: <%= d.address %> </p>
-            </div>
+              <div class= 'owner'>Owner: <%= User.find(d.user_id).email%></div>
+              <div class= 'details'>
+                <p>Phone: <%= d.phone %> </p>
+                <p>Address: <%= d.address %> </p>
+              </div>
           <% end %>
         <% end %>
-      </div>
-    </div>
+      </body>
   <% end %>
 </main>
 <section>

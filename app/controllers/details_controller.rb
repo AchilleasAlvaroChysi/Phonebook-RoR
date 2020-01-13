@@ -9,27 +9,25 @@ class DetailsController < ApplicationController
     @detail = Detail.create(detail_params)
     @detail.user_id = @user.id
     @detail.save
-    redirect_to user_path(@user)
+    redirect_to user_path(User.find(params[:user_id]))
 
   end
 
+  def update
+    @detail = Detail.find(params[:id])
+    @detail.update(detail_params)
+    redirect_to user_path(User.find(params[:user_id]))
+  end
   def show
     id = params[:id]
     @user = User.find(id)
   end
 
-  def edit
-    @detail = Detail.find(params[:id])
-    @detail.phone = params[:phone]
-    @detail.address = params[:address]
-    redirect_back fallback_location: edit_user_path
-    
-  end
+
   def destroy
     @detail = Detail.find(params[:id])
     @detail.destroy
     redirect_back fallback_location: edit_user_path
-
   end
 
   def has_both?

@@ -6,11 +6,14 @@
   <% if list.any? %>
     <% list.each do |f|%>
       <div class= "items">
-        Phone: <%= f.phone%>
-        <br>
-        Address: <%= f.address%>
-        <br>
-        <%= button_to 'delete', detail_path(f.id) , method: :delete%>
+        <%= form_for f, :url => "edit/#{f.id}",  :html => {:multipart => true}  do |d|%>
+          <%= d.hidden_field :id, value: f.id %>
+          <%#= d.hidden_field :user_id, value: f.user_id %>
+          Phone: <%= d.phone_field :phone, value: f.phone%> <br />
+          Address: <%= d.text_field :address, value: f.address %> <br />
+          <%= d.submit %>
+        <%end%>
+        <%= button_to 'delete', detail_path(f.id) , method: :delete,class:"btn btn-danger", :data=>{ :confirm=>'Are your surely sure?'}%>
       </div>
       <br>
       <br>

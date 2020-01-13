@@ -32,10 +32,12 @@
 
 Rails.application.routes.draw do
 	resources :users do
-    resources :details
-  end
+		resources :details
+	end
+	root to: 'sessions#welcome'
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
+	patch 'users/:user_id/edit/:id', to: 'details#update'
 	get 'logout', to: 'sessions#destroy',  as: 'logout'
 	get 'welcome', to: 'sessions#welcome'
 	get 'authorized', to: 'sessions#page_requires_login'
