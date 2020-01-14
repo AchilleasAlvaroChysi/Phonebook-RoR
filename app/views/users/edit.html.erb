@@ -13,7 +13,9 @@
           Address: <%= d.text_field :address, value: f.address %> <br />
           <%= d.submit %>
         <%end%>
-        <%= button_to 'delete', detail_path(f.id) , method: :delete,class:"btn btn-danger", :data=>{ :confirm=>'Are your surely sure?'}%>
+        <% if list.second!= nil%>
+          <%= button_to 'delete', detail_path(f.id) , method: :delete,class:"btn btn-danger", :data=>{ :confirm=>'Are your surely sure?'}%>
+          <%end%>
       </div>
       <br>
       <br>
