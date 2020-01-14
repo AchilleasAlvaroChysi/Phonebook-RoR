@@ -33,6 +33,9 @@
 Rails.application.routes.draw do
 	resources :users do
 		resources :details
+		member do
+			get :confirm_email
+		end
 	end
 	root to: 'sessions#welcome'
 	get 'login', to: 'sessions#new'
