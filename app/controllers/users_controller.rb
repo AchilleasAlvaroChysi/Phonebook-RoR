@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
 
-  skip_before_action :authorized, only: [:new, :create]
+	skip_before_action :authorized, only: [:new, :create]
 
-  def new
-	  @user = User.new
-  end
+	def new
+		@user = User.new
+	end
 
-  def create
-	  @user = User.new(user_params)
+	def create
+		@user = User.new(user_params)
 		@user.valid?
 		if @user.save
 			UserMailer.registration_confirmation(@user).deliver
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 			flash[:alert] = "There was a problem creating your account. Please try again."
 			redirect_to '/welcome'
 		end
-  end
+	end
 
 	def confirm_email
 		user = User.find_by_confirm_token(params[:id])
@@ -34,19 +34,37 @@ class UsersController < ApplicationController
 
 	end
 
-  def index
-  end
+	def get_invitation
+		redirect_to root_path
+	end
+	def invitation_email
+		user = User.find(params[:id])
+		receiver = params[:receiver]
+		if user
+			UserMailer.invitation_email(user, receiver).deliver
+			flash[:success] = "your invitation has been sent successfully!"
+			redirect_to user_path(user.id)
+		else
+			flash[:error] = "something went wrong with your invitation"
+		end
+	end
 
-  def show
-	user = User.find(params[:id])
-	if !user.details.any?
-		flash.alert = "you should have at least one piece of info for you"
-		redirect_to new_user_detail_path(user)
-		return
-	  end
-  end
+	def index
+		@user = User.find(params[:format])
+	end
 
-  def user_params
-	  params.require(:user).permit(:email, :password)
-  end
+	def show
+		user = User.find(params[:id])
+		if !user.details.any?
+			flash.alert = "you should have at least one piece of info for you"
+			redirect_to new_user_detail_path(user)
+			return
+		end
+		
+	end
+	private
+	
+	def user_params
+		params.require(:user).permit(:email, :password)
+	end
 end

@@ -1,17 +1,38 @@
 <div class= "button">
   <%= button_to "add details", new_user_detail_path(current_user), method: :get, class: "btn" %>
   <%= button_to "logout", '/welcome', method: :get, class: "btn btn-logout" %>
-  <%= button_to "users", '/users', method: :get, class: "btn"%>
   <%= button_to "profile", edit_user_path(current_user.id), method: :get , class: "btn"%>
 </div>
-<% if logged_in? %>
-  <h1> hello <%= current_user.email.split('@').first%> </h1>
-    <% list = current_user.details %>
-    <% if list.any? %>
-      <% list.each do |d| %>
-          Owner: <%= User.find(d.user_id).email%>
-          <p>Phone: <%= d.phone %> </p>
-          <p>Address: <%= d.address %> </p>
-      <% end %>
-    <% end %>
-<% end %>
+<head>
+  <%if logged_in? %>
+    <h1>Welcome <%= current_user.email.split('@').first%> </h1>
+  <%end%>
+</head>
+<body>
+  <% @users = User.all%>
+  <%if @users.any?%>
+    <ol>
+      <% @users.each do |u|%>
+        <li><%= u.email%></li>
+          <%list = u.details%>
+          <%if list.any?%>
+            <ul>
+              <li>Phone: <%= list.first.phone%></li>
+              <li>Address: <%= list.first.address%></li>
+              <%= link_to "more+#{list.length-1 }", "/users.#{u.id}",method: :get %>
+            </ul>
+          <%end%>
+        <%end%>
+        </li>
+    </ol>
+  <%end%>
+</body>
+
+<div class="container">
+  <%= form_tag invitation_email_user_path do%>
+    <%= label_tag :receiver%>
+    <%= email_field_tag :receiver%>
+    <%= submit_tag "Add!"%>
+  <%end%>
+</div>
+

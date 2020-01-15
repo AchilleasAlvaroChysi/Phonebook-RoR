@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 		resources :details
 		member do
 			get :confirm_email
+			post :invitation_email 
 		end
 	end
 	root to: 'sessions#welcome'
