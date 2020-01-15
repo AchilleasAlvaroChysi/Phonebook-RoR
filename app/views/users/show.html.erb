@@ -1,42 +1,46 @@
 <div class= "button">
-  <%= button_to "add details", new_user_detail_path(current_user), method: :get, class: "btn" %>
-  <%= button_to "logout", '/welcome', method: :get, class: "btn btn-logout" %>
-  <%= button_to "profile", edit_user_path(current_user.id), method: :get , class: "btn"%>
+  <%= button_to "new detail", new_user_detail_path(current_user), method: :get, class: "btn btn-primary" %>
+  <%= button_to "profile", edit_user_path(current_user.id), method: :get , class: "btn btn-primary"%>
+  <%= button_to "logout", '/welcome', method: :get, class: "btn btn-danger btn-logout" %>
 </div>
-<head>
-  <%unless is_admin?%>
-    <%if logged_in? %>
-      <h1>Welcome <%= current_user.email.split('@').first%> </h1>
-    <%end%>
-  <%else%>
-    <h1> You are the admin </h1>
+
+<%unless is_admin?%>
+  <%if logged_in? %>
+    <div id="title"><h1>Welcome <%= current_user.email.split('@').first%> </h1></div>
   <%end%>
-</head>
+<%else%>
+  <h1> You are the admin </h1>
+<%end%>
 <body>
-  <% @users = User.where(active: true)%>
-  <%if @users.any?%>
-    <ol>
-      <% @users.each do |u|%>
-        <li><%= u.email%>
-          <%list = u.details%>
-          <%if list.any?%>
-            <ul>
-              <li>Phone: <%= list.first.phone%></li>
-              <li>Address: <%= list.first.address%></li>
-              <%= link_to "more+#{list.length-1 }", "/users.#{u.id}",method: :get %>
-            </ul>
-          <%end%>
+  <center>
+    <% @users = User.where(active: true)%>
+    <%if @users.any?%>
+      <ol>
+        <% @users.each do |u|%>
+          <div class="card">
+            <li> 
+              <%= u.email%>
+              <%list = u.details%>
+              <%if list.any?%>
+                <ul>
+                  <li>Phone: <%= list.first.phone%></li>
+                  <li>Address: <%= list.first.address%></li>
+                  <%= link_to "more+#{list.length-1 }", "/users.#{u.id}",method: :get %>
+                </ul>
+              <%end%>
+            </li>
+          </div>
         <%end%>
-        </li>
-    </ol>
-  <%end%>
+      </ol>
+    <%end%>
+  </center>
 </body>
 
-<div class="container">
+<div class="container invitation">
   <%= form_tag invitation_email_user_path do%>
-    <%= label_tag :receiver%>
+    <%= label_tag "Invite a friend!"%>
     <%= email_field_tag :receiver%>
-    <%= submit_tag "Add!"%>
+    <%= submit_tag "Send!",class: "btn btn-primary btn-submit"%>
   <%end%>
 </div>
 

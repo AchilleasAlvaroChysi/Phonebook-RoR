@@ -1,10 +1,13 @@
-<h1>Login</h1>
-
-<%= form_tag '/login' do %>
-	<%= label_tag :email %>
-	<%= text_field_tag :email %>
-	<%= label_tag :password %>
-	<%= password_field_tag :password %>
-	<%= submit_tag "Log in" %>
-<%end %>
-<%= button_to "back", '/welcome', method: :get %>
+<div id="title"><h1>Login</h1></div>
+<div class=container>
+	<%= form_tag '/login' do %>
+		<%= label_tag :email %>
+		<%= text_field_tag :email %>
+		<br>
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
+		<br>
+		<%= submit_tag "Log in", class:"btn btn-primary btn-submit" %>
+	<%end %>
+</div>
+<%= button_to "back", '/welcome', method: :get, class: 'btn btn-secondary btn-back'%>

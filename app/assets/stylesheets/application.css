@@ -1,0 +1,96 @@
+body{
+    font-family: 'Open Sans Condenserd', sans-serif;
+    margin: 2% 2%;
+}
+a{
+    text-decoration: none;
+}
+.btn{
+    border: 1px solid black;
+    margin: 1px;
+    width: 12%;
+    padding: 3px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.btn.btn-primary{
+    float: left;
+}
+.btn.btn-delete{
+    background-color: crimson;
+}
+.btn.btn-account{
+    float: right;
+}
+.btn.btn-back{
+    float: left;
+}
+.btn-logout{
+    background-color: red;
+    float: right;
+}
+.btn-submit{
+    background-color: rgb(161, 159, 159);
+}
+.btn.btn-primary.btn-signup{
+    float: right;
+    width: 25%;
+}
+.btn.btn-primary.btn-login{
+    float: left;
+    width: 25%;
+}
+
+#title{
+    text-align: center;
+}
+.container{
+    width: 500px;
+    text-align: center;
+    font-weight: bold;
+    clear: both;
+}
+
+.container input{
+    font-weight: bold;
+    width: 100%;
+    clear: both;
+}
+
+#notice #warning {
+    margin: 1em 0;
+    padding: 4px;
+    border: 1px solid black;
+  }
+
+.card{
+    text-align: center;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    width: 50%;
+    padding: 2px;
+    margin: 4px;
+}
+.card:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+}
+.invitation{
+    float: left;
+    width: 50%;
+}
+center li{
+    list-style-type: none;
+}
+ul{
+    list-style-type: none;
+}
+ol{
+    list-style-type: disc;
+}
+.description{
+    font-style: italic;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    padding-left: 25% ;
+    padding-right: 25%;
+    padding-top: 5%;
+}

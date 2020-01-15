@@ -14,7 +14,7 @@
           <%= d.submit %>
         <%end%>
         <% if list.second!= nil%>
-          <%= button_to 'delete', detail_path(f.id) , method: :delete,class:"btn btn-danger", :data=>{ :confirm=>'Are your surely sure?'}%>
+          <%= button_to 'delete', detail_path(f.id) , method: :delete,class:"btn btn-danger btn-delete", :data=>{ :confirm=>'Are your surely sure?'}%>
           <%end%>
       </div>
       <br>
@@ -25,9 +25,9 @@
   <br>
   <br>
 </div>
-<%= button_to "home", user_path(current_user.id), method: :get %>
+<%= button_to "home", user_path(current_user.id), method: :get, class: 'btn btn-secondary btn-back' %>
 <% if current_user.active == true %>
-  <%= button_to "Deactivate account",deactivate_user_path, method: :post,class:"btn btn-danger", :data=>{ :confirm=>'Are you sure?'}%>
+  <%= button_to "Deactivate account",deactivate_user_path, method: :post,class:"btn btn-danger btn-account", :data=>{ :confirm=>'Are you sure?'}%>
 <%else%>
-  <%= button_to "activate account",activate_user_path, method: :post, class:"btn btn-danger", :data=>{ :confirm=>'Are you sure?'}%>
+  <%= button_to "activate account",activate_user_path, method: :post, class:"btn btn-success btn-account", :data=>{ :confirm=>'Are you sure?'}%>
 <%end%>

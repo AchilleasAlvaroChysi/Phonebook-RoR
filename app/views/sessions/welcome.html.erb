@@ -1,14 +1,11 @@
 <body>
-  <div class="title">
-    <h1>Welcome</h1>
+  <div id="title">
+    <h1>PhoneBook</h1>
   </div>
   <div class='description'>
-        <p><strong>PhoneBook</strong> is a phone-book app built in Ruby on rails, where users login to their accounts and show their
+      <p><strong>PhoneBook</strong> is a phone-book app built in Ruby on rails, where users login to their accounts and show their
       details to other users of the app </p>
   </div>
-
 </body>
-<section>
-  <div class= "signup"> <%= button_to "sign up",'/users/new', method: :get%></div>
-  <div class="login"><%= button_to "login", '/login', method: :get %></div>
-</section>
+<%= button_to "sign up",'/users/new', method: :get,class: "btn btn-primary btn-signup"%>
+<%= button_to "login", '/login', method: :get, class: "btn btn-primary btn-login" %>

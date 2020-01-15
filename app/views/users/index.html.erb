@@ -1,23 +1,24 @@
-<%= button_to "back", :back, method: :get %>
-<%= button_to "home", user_path(current_user.id), method: :get %>
+<%= button_to "back", user_path(current_user.id), method: :get, class: "btn btn-secondary btn-back" %>
 
-<head>
-    <h1> You are at <%= @user.email%>'s profile </h1>
-</head>
+ <div id="title"><h1> You are at <%= @user.email%>'s profile </h1></div>
 
 <body>
     <% list = @user.details %>
     <%if list.any?%>
         <ol>
+        <center>
             <%list.each do |d|%>
                 <li>
-                    Phone: <%= d.phone%> 
-                    <br>
-                    Address: <%= d.address%>
-                    <br>
-                    <br>
+                    <div class= "card">
+                        Phone: <%= d.phone%> 
+                        <br>
+                        Address: <%= d.address%>
+                        <br>
+                        <br>
+                    </div>
                 </li>
             <%end%>
+        </center>
         </ol>
     <%end%>
 </body>
