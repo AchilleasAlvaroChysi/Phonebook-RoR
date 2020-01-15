@@ -3,15 +3,19 @@
   <%= button_to "logout", '/welcome', method: :get, class: "btn btn-logout" %>
   <%= button_to "users", '/users', method: :get, class: "btn"%>
   <%= button_to "profile", edit_user_path(current_user.id), method: :get , class: "btn"%>
+  <%= button_to "pending requests", friend_requests_path, method: :get%>
 </div>
 <% if logged_in? %>
   <h1> hello <%= current_user.email.split('@').first%> </h1>
-    <% list = current_user.details %>
-    <% if list.any? %>
-      <% list.each do |d| %>
+    <% list = current_user.friends%>
+    <% list.each do |e|%>
+      <% dlist = e.details %>
+      <% if dlist.any? %>
+        <% dlist.each do |d| %>
           Owner: <%= User.find(d.user_id).email%>
           <p>Phone: <%= d.phone %> </p>
           <p>Address: <%= d.address %> </p>
+        <% end %>
       <% end %>
-    <% end %>
+    <%end%>
 <% end %>

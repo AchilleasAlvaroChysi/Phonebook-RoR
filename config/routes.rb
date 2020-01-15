@@ -1,6 +1,16 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#             friends_index GET    /friends/index(.:format)                                                                 friends#index
+#           friends_destroy GET    /friends/destroy(.:format)                                                               friends#destroy
+#           friend_requests GET    /friend_requests(.:format)                                                               friend_requests#index
+#                           POST   /friend_requests(.:format)                                                               friend_requests#create
+#        new_friend_request GET    /friend_requests/new(.:format)                                                           friend_requests#new
+#       edit_friend_request GET    /friend_requests/:id/edit(.:format)                                                      friend_requests#edit
+#            friend_request GET    /friend_requests/:id(.:format)                                                           friend_requests#show
+#                           PATCH  /friend_requests/:id(.:format)                                                           friend_requests#update
+#                           PUT    /friend_requests/:id(.:format)                                                           friend_requests#update
+#                           DELETE /friend_requests/:id(.:format)                                                           friend_requests#destroy
 #              user_details GET    /users/:user_id/details(.:format)                                                        details#index
 #                           POST   /users/:user_id/details(.:format)                                                        details#create
 #           new_user_detail GET    /users/:user_id/details/new(.:format)                                                    details#new
@@ -9,6 +19,7 @@
 #                           PATCH  /users/:user_id/details/:id(.:format)                                                    details#update
 #                           PUT    /users/:user_id/details/:id(.:format)                                                    details#update
 #                           DELETE /users/:user_id/details/:id(.:format)                                                    details#destroy
+#        confirm_email_user GET    /users/:id/confirm_email(.:format)                                                       users#confirm_email
 #                     users GET    /users(.:format)                                                                         users#index
 #                           POST   /users(.:format)                                                                         users#create
 #                  new_user GET    /users/new(.:format)                                                                     users#new
@@ -17,8 +28,10 @@
 #                           PATCH  /users/:id(.:format)                                                                     users#update
 #                           PUT    /users/:id(.:format)                                                                     users#update
 #                           DELETE /users/:id(.:format)                                                                     users#destroy
+#                      root GET    /                                                                                        sessions#welcome
 #                     login GET    /login(.:format)                                                                         sessions#new
 #                           POST   /login(.:format)                                                                         sessions#create
+#                           PATCH  /users/:user_id/edit/:id(.:format)                                                       details#update
 #                    logout GET    /logout(.:format)                                                                        sessions#destroy
 #                   welcome GET    /welcome(.:format)                                                                       sessions#welcome
 #                authorized GET    /authorized(.:format)                                                                    sessions#page_requires_login
@@ -31,6 +44,9 @@
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  get 'friends/index'
+  get 'friends/destroy'
+  resources :friend_requests
 	resources :users do
 		resources :details
 		member do

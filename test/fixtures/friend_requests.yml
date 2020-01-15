@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: friend_requests
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  friend_id  :integer
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_friend_requests_on_friend_id  (friend_id)
+#  index_friend_requests_on_user_id    (user_id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  friend: one
+
+two:
+  user: two
+  friend: two

@@ -18,6 +18,13 @@ class User < ApplicationRecord
 	validates_confirmation_of :password
 	has_many :details
 	accepts_nested_attributes_for :details
+	
+	has_many :friend_requests, dependent: :destroy
+	has_many :pending_friends, through: :friend_requests, source: :friend
+
+	has_many :friendships, dependent: :destroy
+	has_many :friends, through: :friendships	  
+	
 
 	def email_activate
 		self.email_confirmed = true
@@ -25,6 +32,9 @@ class User < ApplicationRecord
 		save
 	  end
 
+	def remove_friend(friend)
+		current_user.friends.destroy(friend)
+	  end
 	private
 	def confirmation_token
 		if self.confirm_token.blank?

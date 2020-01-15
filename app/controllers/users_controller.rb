@@ -35,8 +35,16 @@ class UsersController < ApplicationController
 	end
 
   def index
+	@user = User.find(current_user.id)
+	@users= User.all
   end
-
+  def show
+	@user = User.find(params[:id])
+	@users= User.all
+  end
+  def remove_friend(friend)
+    current_user.friends.destroy(friend)
+  end
   def show
 	user = User.find(params[:id])
 	if !user.details.any?

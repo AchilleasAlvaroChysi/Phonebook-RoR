@@ -1,0 +1,23 @@
+<h1> Hello world</h1>
+<% listb = @outgoing%>
+<% if  listb.any?%>
+    <%listb.each do |l|%></
+        <p> <%= l.friend_id%></p>
+        <%unless listb.include?(l.id)%>
+            <%= button_to 'cancel', friend_request_path(l.id), method: :delete %>
+            <%end%>
+    <%end%>
+<%end%>
+
+<% listo = @incoming%>
+<% if  listo.any?%>
+    <%listo.each do |l|%></
+        <p> <%= l.friend_id%></p>
+        <%= button_to 'accept', friend_request_path(l.id), method: :patch %>
+        <%= button_to 'decline', friend_request_path(l.id), method: :delete%>
+    <%end%>
+<%else%>
+    <p>No incoming requests</p>
+<%end%>
+
+<%= button_to "home", user_path(current_user.id), method: :get %>

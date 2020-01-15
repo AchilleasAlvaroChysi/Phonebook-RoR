@@ -1,4 +1,27 @@
-<h1>Users#index</h1>
-<h1> HERE ADD THE OTHER PEOPLE TO FOLLOW OR NOT</h1>
-<%= button_to "back", :back, method: :get %>
+<h2>Is any of these users your friend? Add him now</h2>
+<% @users= User.all%>
+<% @users.each do|u|%>
+    <%unless u.email == current_user.email%>
+        <ul>
+        <li><strong><%=u.email%></strong>
+        <% unless current_user.friends.include?(u)||current_user.pending_friends.include?(u)%>
+            <%= button_to 'add!', friend_requests_path(friend_id: u.id),method: :post%>
+            <%end%>
+        </li>
+        <ol>
+            <% u.details.each do |d|%>
+            <li>
+                <ul>
+                <li><%=d.phone%></li>
+                <li><%=d.address%></li>
+                </ul>
+            </li>
+            <%end%>
+
+        </ol>
+
+        </ul>
+
+    <%end%>
+<%end%>
 <%= button_to "home", user_path(current_user.id), method: :get %>
