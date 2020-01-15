@@ -16,6 +16,9 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  test "user_count" do
+    assert_equal 20, users.length
+  end
   # test "the truth" do
   #   assert true
   # end

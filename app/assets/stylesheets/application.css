@@ -44,14 +44,14 @@ a{
 #title{
     text-align: center;
 }
-.container{
+.section{
     width: 500px;
     text-align: center;
     font-weight: bold;
     clear: both;
 }
 
-.container input{
+.section input{
     font-weight: bold;
     width: 100%;
     clear: both;

@@ -1,5 +1,5 @@
-<div class="title">
-    email: <b> <%= current_user.email%> <b>
+<div id="title">
+    <h1>User: <b> <%= current_user.email%> <b>Profile</h1>
   </div>
 <div class="body">
   <% list = current_user.details%>
@@ -11,7 +11,7 @@
           <%#= d.hidden_field :user_id, value: f.user_id %>
           Phone: <%= d.phone_field :phone, value: f.phone%> <br />
           Address: <%= d.text_field :address, value: f.address %> <br />
-          <%= d.submit %>
+          <%= d.submit "Save Changes", class:"btn btn-secondary btn-submit" %>
         <%end%>
         <% if list.second!= nil%>
           <%= button_to 'delete', detail_path(f.id) , method: :delete,class:"btn btn-danger btn-delete", :data=>{ :confirm=>'Are your surely sure?'}%>

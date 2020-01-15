@@ -1,5 +1,6 @@
 <div id="title"><h1>Login</h1></div>
-<div class=container>
+<center>
+<div class=section>
 	<%= form_tag '/login' do %>
 		<%= label_tag :email %>
 		<%= text_field_tag :email %>
@@ -10,4 +11,5 @@
 		<%= submit_tag "Log in", class:"btn btn-primary btn-submit" %>
 	<%end %>
 </div>
+</center>
 <%= button_to "back", '/welcome', method: :get, class: 'btn btn-secondary btn-back'%>
