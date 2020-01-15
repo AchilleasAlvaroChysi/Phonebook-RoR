@@ -26,3 +26,8 @@
   <br>
 </div>
 <%= button_to "home", user_path(current_user.id), method: :get %>
+<% if current_user.active == true %>
+  <%= button_to "Deactivate account",deactivate_user_path, method: :post,class:"btn btn-danger", :data=>{ :confirm=>'Are you sure?'}%>
+<%else%>
+  <%= button_to "activate account",activate_user_path, method: :post, class:"btn btn-danger", :data=>{ :confirm=>'Are you sure?'}%>
+<%end%>

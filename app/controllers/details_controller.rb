@@ -30,11 +30,6 @@ class DetailsController < ApplicationController
     redirect_back fallback_location: edit_user_path
   end
 
-  def has_both?
-    @detail = Detail.find(params[:id])
-    !(@detail.phone== nil && @detail.address==nil)
-  end
-
   def detail_params
     params.require(:detail).permit(:phone, :address)
   end

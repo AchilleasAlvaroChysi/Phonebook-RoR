@@ -4,16 +4,20 @@
   <%= button_to "profile", edit_user_path(current_user.id), method: :get , class: "btn"%>
 </div>
 <head>
-  <%if logged_in? %>
-    <h1>Welcome <%= current_user.email.split('@').first%> </h1>
+  <%unless is_admin?%>
+    <%if logged_in? %>
+      <h1>Welcome <%= current_user.email.split('@').first%> </h1>
+    <%end%>
+  <%else%>
+    <h1> You are the admin </h1>
   <%end%>
 </head>
 <body>
-  <% @users = User.all%>
+  <% @users = User.where(active: true)%>
   <%if @users.any?%>
     <ol>
       <% @users.each do |u|%>
-        <li><%= u.email%></li>
+        <li><%= u.email%>
           <%list = u.details%>
           <%if list.any?%>
             <ul>

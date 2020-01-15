@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
+#  active          :boolean          default(TRUE)
+#  admin           :boolean          default(FALSE)
 #  confirm_token   :string
 #  email           :string
 #  email_confirmed :boolean          default(FALSE)
@@ -24,7 +26,16 @@ class User < ApplicationRecord
 		self.confirm_token = nil
 		save
 	  end
+	
+	def account_activate
+		self.active = true
+		save
+	end
 
+	def account_deactivate
+		self.active = false
+		save
+	end
 	private
 	def confirmation_token
 		if self.confirm_token.blank?

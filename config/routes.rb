@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 		member do
 			get :confirm_email
 			post :invitation_email 
+			post :activate
+			post :deactivate
 		end
 	end
 	root to: 'sessions#welcome'

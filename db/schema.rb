@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_080532) do
+ActiveRecord::Schema.define(version: 2020_01_15_122516) do
 
   create_table "details", force: :cascade do |t|
     t.integer "phone"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_01_14_080532) do
     t.datetime "updated_at", null: false
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
+    t.boolean "admin", default: false
+    t.boolean "active", default: true
   end
 
 end

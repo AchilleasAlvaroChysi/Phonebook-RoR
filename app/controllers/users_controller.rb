@@ -33,10 +33,22 @@ class UsersController < ApplicationController
 		end
 
 	end
+	def activate 
+		user = User.find(params[:id])
+		user.account_activate
+		redirect_to edit_user_path(user)
+	end
+	def deactivate
+		user = User.find(params[:id])
+		user.account_deactivate
+		redirect_to edit_user_path(user)
+
+	end
 
 	def get_invitation
 		redirect_to root_path
 	end
+
 	def invitation_email
 		user = User.find(params[:id])
 		receiver = params[:receiver]

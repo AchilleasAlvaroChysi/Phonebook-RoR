@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
+#  active          :boolean          default(TRUE)
+#  admin           :boolean          default(FALSE)
 #  confirm_token   :string
 #  email           :string
 #  email_confirmed :boolean          default(FALSE)
