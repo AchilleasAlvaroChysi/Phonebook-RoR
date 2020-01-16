@@ -6,14 +6,37 @@
 
 <%unless is_admin?%>
   <%if logged_in? %>
-    <div id="title"><h1>Welcome <%= current_user.email.split('@').first%> </h1></div>
+    <div id="title"><h1>Welcome <b> <br><%= current_user.email.split('@').first%></b> </h1></div>
   <%end%>
 <%else%>
   <h1> You are the admin </h1>
 <%end%>
 <body>
   <center>
-    <% @users = User.where(active: true)%>
+    <% @fusers = current_user.featured.where(active: true)%>
+    <% @users = User.where(active: true)%>    
+    <%@users-= @fusers%>  
+    <%if @fusers.any?%>
+      <% @fusers.each do |f|%>
+        <div class = "card" id="featured">
+          <%= f.email%><br>
+          <%f.details.each do |e|%>
+            Phone:<%=e.phone%><br>
+            Address:<%= e.address%>
+            <%= link_to "more+#{f.details.length-1 }", "/users.#{f.id}",method: :get %>
+          <%end%>
+          <%if f!= current_user%>
+            <% unless current_user.featured.include?(f)%>
+                <%= button_to "Feature", feature_user_path(current_user.id,feature_id: f.id), method: :post%>
+                <%=button_to "Unfeature", unfeature_user_path(current_user,feature_id: f.id),method: :delete,:disabled => true%>
+              <%else%>
+                <%= button_to "Feature",feature_user_path(current_user.id,feature_id: f.id),:disabled =>true%>
+                <%= button_to "Unfeature", unfeature_user_path(current_user,feature_id: f.id),method: :delete %>
+              <%end%>
+          <%end%>
+        </div>
+      <%end%>
+    <%end%>
     <%if @users.any?%>
       <ol>
         <% @users.each do |u|%>
@@ -26,6 +49,15 @@
                   <li>Phone: <%= list.first.phone%></li>
                   <li>Address: <%= list.first.address%></li>
                   <%= link_to "more+#{list.length-1 }", "/users.#{u.id}",method: :get %>
+                  <%if u!= current_user%>
+                    <% unless current_user.featured.include?(u)%>
+                      <%= button_to "Feature", feature_user_path(current_user.id,feature_id: u.id), method: :post%>
+                      <%=button_to "Unfeature", unfeature_user_path(current_user,feature_id: u.id),method: :delete,:disabled => true%>
+                    <%else%>
+                      <%= button_to "Feature",feature_user_path(current_user.id,feature_id: u.id),:disabled =>true%>
+                      <%= button_to "Unfeature", unfeature_user_path(current_user,feature_id: u.id),method: :delete %>
+                    <%end%>
+                  <%end%>
                 </ul>
               <%end%>
             </li>

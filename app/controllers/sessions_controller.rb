@@ -12,15 +12,15 @@ class SessionsController < ApplicationController
 
       if user.email_confirmed 
         session[:user_id] = user.id
-        flash.notice= "Welcome"
-        redirect_to user_path(user)
+        flash[:success]= "Welcome"
+        redirect_to user_path(user), sucess: "Welcome"
       else
-        flash[:error] = 'Please activate your account by following the 
+        flash[:warning] = 'Please activate your account by following the 
         instructions in the account confirmation email you received to proceed'
         redirect_to root_path
       end
 	  else
-      flash.now[:error] = "Couldn't login with your credentials"
+      flash[:warning] = "Couldn't login with your credentials"
 		  redirect_to '/login'
 	  end
   end

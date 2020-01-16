@@ -4,11 +4,11 @@
     </div>
   <div class="container">
     <%= form_for Detail.new(), :url => user_details_path, :html => {:multipart => true} do |f| %>
-        <%= f.label :phone  %>
+        <%= f.label :phone ,required: true %>
         <%= f.telephone_field :phone %>
         <br>
         <%= f.label :address %>
-        <%= f.text_field :address %>
+        <%= f.text_field :address ,required: true%>
         <br>
       <%= f.submit "Submit", disable_with: 'Submiting...',class: 'btn btn-primary btn-submit' %>
     <% end %>

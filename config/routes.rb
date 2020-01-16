@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 			post :invitation_email 
 			post :activate
 			post :deactivate
+			post :feature
+			delete :unfeature
 		end
 	end
 	root to: 'sessions#welcome'
